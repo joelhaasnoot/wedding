@@ -5,6 +5,14 @@
 	<h2>Beste {{ guest.first_name }} {{ guest.last_name }},</h2>
 	We hebben een paar vragen voor jullie :)
 	
-	{% crispy reply %}
+	<form method="POST">
+		{% crispy reply %}
+		{{ questions.management_form }}
+		{% for q in questions %}
+			{{ q.instance.question }}
+			{% crispy q %}
+		{% endfor %}
+		<input type="submit" value="Opslaan">
+	</form>
 	
 {% endblock %}
